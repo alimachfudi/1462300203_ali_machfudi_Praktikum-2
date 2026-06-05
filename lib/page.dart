@@ -9,68 +9,93 @@ class PageBaru extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.grey[300],
 
-      appBar: AppBar(
-        title: const Text("Daftar Novel"),
-        centerTitle: true,
-      ),
+      body: Center(
+        child: Container(
+          width: 450,
+          height: 650,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            border: Border.all(color: Colors.black),
+          ),
 
-      body: Padding(
-        padding: const EdgeInsets.all(12),
-        child: GridView.count(
-          crossAxisCount: 2,
-          crossAxisSpacing: 10,
-          mainAxisSpacing: 10,
-          children: [
-            kartuNovel(
-              context,
-              "assets/images/laut.jfif",
-              "Laut Bercerita",
-              "Leila S. Chudori",
-              "Kisah perjuangan aktivis mahasiswa pada masa Orde Baru yang penuh pengorbanan.",
+          child: Padding(
+            padding: const EdgeInsets.all(15),
+            child: Column(
+              children: [
+                const SizedBox(height: 10),
+
+                const Text(
+                  "Daftar Novel",
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+
+                const SizedBox(height: 20),
+
+                Expanded(
+                  child: GridView.count(
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 10,
+                    mainAxisSpacing: 10,
+                    childAspectRatio: 0.75,
+                    children: [
+                      kartuNovel(
+                        context,
+                        "assets/images/laut.jfif",
+                        "Laut Bercerita",
+                        "Leila S. Chudori",
+                        "Kisah perjuangan aktivis mahasiswa pada masa Orde Baru.",
+                      ),
+
+                      kartuNovel(
+                        context,
+                        "assets/images/perahu.jfif",
+                        "Perahu Kertas",
+                        "Dee Lestari",
+                        "Cerita tentang persahabatan dan cinta.",
+                      ),
+
+                      kartuNovel(
+                        context,
+                        "assets/images/dilan.jfif",
+                        "Dilan 1990",
+                        "Pidi Baiq",
+                        "Kisah romantis Dilan dan Milea.",
+                      ),
+
+                      kartuNovel(
+                        context,
+                        "assets/images/laskar.jfif",
+                        "Laskar Pelangi",
+                        "Andrea Hirata",
+                        "Perjuangan anak-anak Belitung dalam pendidikan.",
+                      ),
+
+                      kartuNovel(
+                        context,
+                        "assets/images/bumi.jfif",
+                        "Bumi",
+                        "Tere Liye",
+                        "Petualangan dunia paralel yang misterius.",
+                      ),
+
+                      kartuNovel(
+                        context,
+                        "assets/images/negeri.jfif",
+                        "Negeri 5 Menara",
+                        "Ahmad Fuadi",
+                        "Perjalanan meraih mimpi dan cita-cita.",
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
-
-            kartuNovel(
-              context,
-              "assets/images/perahu.jfif",
-              "Perahu Kertas",
-              "Dee Lestari",
-              "Cerita tentang persahabatan, mimpi, dan perjalanan cinta Kugy dan Keenan.",
-            ),
-
-            kartuNovel(
-              context,
-              "assets/images/dilan.jfif",
-              "Dilan 1990",
-              "Pidi Baiq",
-              "Kisah romantis dan unik antara Dilan dan Milea saat masa SMA.",
-            ),
-
-            kartuNovel(
-              context,
-              "assets/images/laskar.jfif",
-              "Laskar Pelangi",
-              "Andrea Hirata",
-              "Cerita inspiratif tentang pendidikan dan persahabatan.",
-            ),
-
-            kartuNovel(
-              context,
-              "assets/images/bumi.jfif",
-              "Bumi",
-              "Tere Liye",
-              "Petualangan dunia paralel yang penuh misteri.",
-            ),
-
-            kartuNovel(
-              context,
-              "assets/images/negeri.jfif",
-              "Negeri 5 Menara",
-              "Ahmad Fuadi",
-              "Kisah perjuangan meraih cita-cita dan mimpi besar.",
-            ),
-          ],
+          ),
         ),
       ),
 
@@ -83,7 +108,7 @@ class PageBaru extends StatelessWidget {
             Navigator.pushReplacement(
               context,
               MaterialPageRoute(
-                builder: (context) => HomePage(),
+                builder: (_) => HomePage(),
               ),
             );
           }
@@ -92,7 +117,7 @@ class PageBaru extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => const ProfilePage(),
+                builder: (_) => const ProfilePage(),
               ),
             );
           }
@@ -128,7 +153,7 @@ class PageBaru extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (_) => detailnovelPage(
+            builder: (_) => DetailNovelPage(
               gambar: gambar,
               judul: judul,
               penulis: penulis,
@@ -138,7 +163,7 @@ class PageBaru extends StatelessWidget {
         );
       },
       child: Card(
-        elevation: 4,
+        elevation: 3,
         child: Column(
           children: [
             Expanded(
@@ -151,12 +176,28 @@ class PageBaru extends StatelessWidget {
 
             Padding(
               padding: const EdgeInsets.all(8),
-              child: Text(
-                judul,
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                ),
+              child: Column(
+                children: [
+                  Text(
+                    judul,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+
+                  const SizedBox(height: 4),
+
+                  Text(
+                    penulis,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      fontSize: 11,
+                      color: Colors.grey,
+                    ),
+                  ),
+                ],
               ),
             ),
           ],
