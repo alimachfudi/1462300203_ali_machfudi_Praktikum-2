@@ -17,63 +17,90 @@ class DetailNovelPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(judul),
-      ),
+      backgroundColor: Colors.grey[300],
 
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Image.asset(
-                gambar,
-                height: 300,
-              ),
+      body: Center(
+        child: Container(
+          width: 350,
+          height: 700,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            border: Border.all(color: Colors.black),
+          ),
 
-              const SizedBox(height: 20),
+          child: SafeArea(
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(20),
+                child: Column(
+                  children: [
+                    const SizedBox(height: 20),
 
-              Text(
-                judul,
-                style: const TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
+                    Image.asset(
+                      gambar,
+                      height: 250,
+                    ),
+
+                    const SizedBox(height: 20),
+
+                    Text(
+                      judul,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+
+                    const SizedBox(height: 10),
+
+                    Text(
+                      penulis,
+                      style: const TextStyle(
+                        color: Colors.grey,
+                        fontSize: 16,
+                      ),
+                    ),
+
+                    const SizedBox(height: 20),
+
+                    Text(
+                      deskripsi,
+                      textAlign: TextAlign.justify,
+                      style: const TextStyle(
+                        fontSize: 16,
+                      ),
+                    ),
+
+                    const SizedBox(height: 30),
+
+                    SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        onPressed: () {},
+                        child: const Text(
+                          "Pinjam Buku",
+                        ),
+                      ),
+                    ),
+
+                    const SizedBox(height: 20),
+
+                    SizedBox(
+                      width: double.infinity,
+                      child: OutlinedButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: const Text(
+                          "Kembali",
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
-
-              const SizedBox(height: 8),
-
-              Text(
-                penulis,
-                style: const TextStyle(
-                  color: Colors.grey,
-                  fontSize: 16,
-                ),
-              ),
-
-              const SizedBox(height: 20),
-
-              Text(
-                deskripsi,
-                textAlign: TextAlign.justify,
-                style: const TextStyle(
-                  fontSize: 16,
-                ),
-              ),
-
-              const SizedBox(height: 30),
-
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () {},
-                  child: const Text(
-                    "Pinjam Buku",
-                  ),
-                ),
-              ),
-            ],
+            ),
           ),
         ),
       ),

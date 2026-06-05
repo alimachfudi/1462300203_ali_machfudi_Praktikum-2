@@ -8,48 +8,86 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.grey[300],
 
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Container(
-              height: 180,
-              width: double.infinity,
-              decoration: const BoxDecoration(
-                color: Color(0xFFEAF0FF),
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(100),
-                  bottomRight: Radius.circular(100),
-                ),
-              ),
-              child: const Center(
-                child: Text(
-                  "Profile",
-                  style: TextStyle(
-                    fontSize: 28,
-                    fontWeight: FontWeight.bold,
+      body: Center(
+        child: Container(
+          width: 350,
+          height: 700,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            border: Border.all(color: Colors.black),
+          ),
+
+          child: SafeArea(
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.only(
+                      top: 30,
+                      bottom: 40,
+                    ),
+                    decoration: const BoxDecoration(
+                      color: Color(0xFFEAF0FF),
+                      borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(40),
+                        bottomRight: Radius.circular(40),
+                      ),
+                    ),
+                    child: Column(
+                      children: [
+                        const Text(
+                          "Profile",
+                          style: TextStyle(
+                            fontSize: 26,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+
+                        const SizedBox(height: 20),
+
+                        const CircleAvatar(
+                          radius: 50,
+                          backgroundImage: AssetImage(
+                            "assets/images/rg.png",
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
+
+                  const SizedBox(height: 20),
+
+                  infoTile(
+                    Icons.person,
+                    "Ali Machfudi",
+                  ),
+
+                  infoTile(
+                    Icons.badge,
+                    "1462300203",
+                  ),
+
+                  infoTile(
+                    Icons.email,
+                    "alimachfudi@gmail.com",
+                  ),
+
+                  infoTile(
+                    Icons.location_on,
+                    "Surabaya",
+                  ),
+
+                  infoTile(
+                    Icons.camera_alt,
+                    "@ali_machfudii",
+                  ),
+                ],
               ),
             ),
-
-            Transform.translate(
-              offset: const Offset(0, -50),
-              child: CircleAvatar(
-                radius: 50,
-                backgroundImage: AssetImage(
-                  "assets/images/rg.png",
-                ),
-              ),
-            ),
-
-            infoTile(Icons.person, "Ali Machfudi"),
-            infoTile(Icons.badge, "1462300203"),
-            infoTile(Icons.email, "alimachfudi@gmail.com"),
-            infoTile(Icons.location_on, "Surabaya"),
-            infoTile(Icons.camera_alt, "@ali_machfudii"),
-          ],
+          ),
         ),
       ),
 
@@ -99,31 +137,23 @@ class ProfilePage extends StatelessWidget {
     IconData icon,
     String text,
   ) {
-    return Container(
+    return Card(
       margin: const EdgeInsets.symmetric(
-        horizontal: 20,
-        vertical: 5,
+        horizontal: 15,
+        vertical: 6,
       ),
-      padding: const EdgeInsets.all(15),
-      decoration: BoxDecoration(
-        border: Border.all(
-          color: Colors.grey.shade300,
+      elevation: 2,
+      child: ListTile(
+        leading: Icon(
+          icon,
+          color: Colors.blue,
         ),
-      ),
-      child: Row(
-        children: [
-          Icon(
-            icon,
-            color: Colors.blue,
+        title: Text(
+          text,
+          style: const TextStyle(
+            fontSize: 16,
           ),
-          const SizedBox(width: 20),
-          Text(
-            text,
-            style: const TextStyle(
-              fontSize: 18,
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }
