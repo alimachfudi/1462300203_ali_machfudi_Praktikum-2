@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'main.dart';
 import 'profile.dart';
+import 'detailnovel.dart';
 
 class PageBaru extends StatelessWidget {
   const PageBaru({super.key});
@@ -10,57 +11,64 @@ class PageBaru extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
 
+      appBar: AppBar(
+        title: const Text("Daftar Novel"),
+        centerTitle: true,
+      ),
+
       body: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        padding: const EdgeInsets.all(12),
+        child: GridView.count(
+          crossAxisCount: 2,
+          crossAxisSpacing: 10,
+          mainAxisSpacing: 10,
           children: [
-            Column(
-              children: [
-                tombolKategori("Novel"),
-                tombolKategori("Romantis"),
-                tombolKategori("Sejarah"),
-                tombolKategori("Biografi"),
-              ],
+            kartuNovel(
+              context,
+              "assets/images/laut.jfif",
+              "Laut Bercerita",
+              "Leila S. Chudori",
+              "Kisah perjuangan aktivis mahasiswa pada masa Orde Baru yang penuh pengorbanan.",
             ),
 
-            const SizedBox(width: 50),
+            kartuNovel(
+              context,
+              "assets/images/perahu.jfif",
+              "Perahu Kertas",
+              "Dee Lestari",
+              "Cerita tentang persahabatan, mimpi, dan perjalanan cinta Kugy dan Keenan.",
+            ),
 
-            Expanded(
-              child: Row(
-                children: [
-                  Expanded(
-                    child: kartuBuku(
-                      "assets/images/laut.jfif",
-                      "Laut Bercerita",
-                      "Leila S. Chudori",
-                      "Kisah perjuangan aktivis mahasiswa pada masa Orde Baru yang penuh pengorbanan.",
-                    ),
-                  ),
+            kartuNovel(
+              context,
+              "assets/images/dilan.jfif",
+              "Dilan 1990",
+              "Pidi Baiq",
+              "Kisah romantis dan unik antara Dilan dan Milea saat masa SMA.",
+            ),
 
-                  const SizedBox(width: 20),
+            kartuNovel(
+              context,
+              "assets/images/laskar.jfif",
+              "Laskar Pelangi",
+              "Andrea Hirata",
+              "Cerita inspiratif tentang pendidikan dan persahabatan.",
+            ),
 
-                  Expanded(
-                    child: kartuBuku(
-                      "assets/images/perahu.jfif",
-                      "Perahu Kertas",
-                      "Dee Lestari",
-                      "Cerita tentang persahabatan, mimpi, dan perjalanan cinta Kugy dan Keenan.",
-                    ),
-                  ),
+            kartuNovel(
+              context,
+              "assets/images/bumi.jfif",
+              "Bumi",
+              "Tere Liye",
+              "Petualangan dunia paralel yang penuh misteri.",
+            ),
 
-                  const SizedBox(width: 20),
-
-                  Expanded(
-                    child: kartuBuku(
-                      "assets/images/dilan.jfif",
-                      "Dilan 1990",
-                      "Pidi Baiq",
-                      "Kisah romantis dan unik antara Dilan dan Milea saat masa SMA.",
-                    ),
-                  ),
-                ],
-              ),
+            kartuNovel(
+              context,
+              "assets/images/negeri.jfif",
+              "Negeri 5 Menara",
+              "Ahmad Fuadi",
+              "Kisah perjuangan meraih cita-cita dan mimpi besar.",
             ),
           ],
         ),
@@ -71,7 +79,6 @@ class PageBaru extends StatelessWidget {
         type: BottomNavigationBarType.fixed,
 
         onTap: (index) {
-          // HOME
           if (index == 0) {
             Navigator.pushReplacement(
               context,
@@ -81,7 +88,6 @@ class PageBaru extends StatelessWidget {
             );
           }
 
-          // PROFILE
           if (index == 2) {
             Navigator.push(
               context,
@@ -110,84 +116,51 @@ class PageBaru extends StatelessWidget {
     );
   }
 
-  Widget tombolKategori(String text) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 20),
-      child: SizedBox(
-        width: 180,
-        height: 50,
-        child: OutlinedButton(
-          onPressed: () {},
-          style: OutlinedButton.styleFrom(
-            shape: const StadiumBorder(),
-          ),
-          child: Text(text),
-        ),
-      ),
-    );
-  }
-
-  Widget kartuBuku(
+  Widget kartuNovel(
+    BuildContext context,
     String gambar,
     String judul,
     String penulis,
     String deskripsi,
   ) {
-    return Container(
-      padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        border: Border.all(color: Colors.grey),
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Image.asset(
-            gambar,
-            height: 180,
-            width: double.infinity,
-            fit: BoxFit.cover,
-          ),
-
-          const SizedBox(height: 15),
-
-          Text(
-            judul,
-            style: const TextStyle(
-              fontSize: 22,
-              fontWeight: FontWeight.bold,
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (_) => detailnovelPage(
+              gambar: gambar,
+              judul: judul,
+              penulis: penulis,
+              deskripsi: deskripsi,
             ),
           ),
-
-          const SizedBox(height: 8),
-
-          Text(
-            penulis,
-            style: const TextStyle(
-              color: Colors.grey,
-              fontSize: 16,
+        );
+      },
+      child: Card(
+        elevation: 4,
+        child: Column(
+          children: [
+            Expanded(
+              child: Image.asset(
+                gambar,
+                width: double.infinity,
+                fit: BoxFit.cover,
+              ),
             ),
-          ),
 
-          const SizedBox(height: 15),
-
-          Text(
-            deskripsi,
-            style: const TextStyle(
-              fontSize: 15,
+            Padding(
+              padding: const EdgeInsets.all(8),
+              child: Text(
+                judul,
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
             ),
-          ),
-
-          const Spacer(),
-
-          ElevatedButton(
-            onPressed: () {},
-            style: ElevatedButton.styleFrom(
-              minimumSize: const Size(double.infinity, 45),
-            ),
-            child: const Text("Pinjam Buku"),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
